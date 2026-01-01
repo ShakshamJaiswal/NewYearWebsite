@@ -139,6 +139,11 @@
 </head>
 <body>
 
+    <audio id="bg-music" loop>
+        <source src="dandelions.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="aurora-bg">
         <div class="aurora-blob blob-1"></div>
         <div class="aurora-blob blob-2"></div>
@@ -328,6 +333,15 @@
         }
 
         function nextStep(stepNum) {
+            
+            // --- ADDED: Play Music Logic ---
+            // Triggers music when leaving step 1 (on first button click)
+            if (currentStep === 1) {
+                const audio = document.getElementById('bg-music');
+                audio.play().catch(e => console.log("Audio waiting for interaction"));
+            }
+            // ---------------------------------
+
             const currentEl = document.getElementById(`step-${currentStep}`);
             const nextEl = document.getElementById(`step-${stepNum}`);
 
